@@ -3,7 +3,7 @@ ul {
   flex-direction: row;
   position: absolute;
   left: 5px;
-  top: 100px;
+  top: 150px;
   align-items: flex-end;
 }
 
@@ -13,4 +13,22 @@ li {
   border: 0.5px solid #000;
   height: 20px;
   width: 20px;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 0%;
+  }
+}
+
+@keyframes move {
+  0% {
+    left: 5px;
+  }
+  100% {
+    left: -15px;
+  }
 }
