@@ -5,6 +5,7 @@ ul {
   left: 5px;
   top: 150px;
   align-items: flex-end;
+  gap: 1px;
 }
 
 li {

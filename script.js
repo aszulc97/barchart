@@ -1,12 +1,18 @@
 let list = document.getElementById("bars");
 let allBars = [];
+let queueData = [];
 createBar();
 
 function createBar() {
   let li = document.createElement("li");
+  let queueSize = getNumberOfCustomer();
+  queueData.push(queueSize);
   allBars.push(li);
-  li.style.height = getNumberOfCustomer() * 2 + "px";
+  li.style.height = queueSize * 2 + "px";
+  li.addEventListener("mouseover", () => (li.textContent = queueSize));
+  li.addEventListener("mouseout", () => (li.textContent = ""));
   list.appendChild(li);
+
   if (li.style.height == "62px" || li.style.height == "64px") {
     li.style.backgroundColor = "red";
   }
@@ -22,6 +28,7 @@ function createBar() {
 
   if (allBars.length === 40) {
     allBars.shift();
+    queueData.shift();
     list.style.animation = "move 0.5s";
     list.addEventListener("animationend", () => (list.style.animation = "none"));
     list.querySelector("li").style.animation = "fadeOut 0.3s";
