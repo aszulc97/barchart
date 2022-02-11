@@ -11,21 +11,28 @@ function createBar() {
   li.style.height = queueSize * 2 + "px";
   li.addEventListener("mouseover", () => (li.textContent = queueSize));
   li.addEventListener("mouseout", () => (li.textContent = ""));
+  redOrGreen(li);
   list.appendChild(li);
+  greyOutOldOnes();
+  deleteOverForty();
+  setTimeout(() => createBar(), 600);
+}
 
-  if (li.style.height == "62px" || li.style.height == "64px") {
+function getNumberOfCustomer() {
+  return Math.floor(Math.random() * 32);
+}
+
+function redOrGreen(li) {
+  if (li.style.height == "60px" || li.style.height == "62px") {
     li.style.backgroundColor = "red";
   }
 
   if (li.style.height == "2px" || li.style.height == "4px") {
     li.style.backgroundColor = "green";
   }
-  console.log(allBars.length);
-  if (allBars.length > 25) {
-    allBars[allBars.length - 26].style.backgroundColor = "#ddd";
-    allBars[allBars.length - 26].style.opacity = "30%";
-  }
+}
 
+function deleteOverForty() {
   if (allBars.length === 40) {
     allBars.shift();
     queueData.shift();
@@ -35,11 +42,12 @@ function createBar() {
     list
       .querySelector("li")
       .addEventListener("animationend", () => list.querySelector("li").remove());
-    // list.querySelector("li").remove();
   }
-  setTimeout(() => createBar(), 600);
 }
 
-function getNumberOfCustomer() {
-  return Math.floor(Math.random() * 32);
+function greyOutOldOnes() {
+  if (allBars.length > 25) {
+    allBars[allBars.length - 26].style.backgroundColor = "#ddd";
+    allBars[allBars.length - 26].style.opacity = "30%";
+  }
 }
