@@ -7,9 +7,20 @@ function createBar() {
   allBars.push(li);
   li.style.height = getNumberOfCustomer() * 2 + "px";
   list.appendChild(li);
-  console.log(allBars);
+  if (li.style.height == "62px" || li.style.height == "64px") {
+    li.style.backgroundColor = "red";
+  }
 
-  if (allBars.length === 10) {
+  if (li.style.height == "2px" || li.style.height == "4px") {
+    li.style.backgroundColor = "green";
+  }
+  console.log(allBars.length);
+  if (allBars.length > 25) {
+    allBars[allBars.length - 26].style.backgroundColor = "#ddd";
+    allBars[allBars.length - 26].style.opacity = "30%";
+  }
+
+  if (allBars.length === 40) {
     allBars.shift();
     list.style.animation = "move 0.5s";
     list.addEventListener("animationend", () => (list.style.animation = "none"));
@@ -19,7 +30,7 @@ function createBar() {
       .addEventListener("animationend", () => list.querySelector("li").remove());
     // list.querySelector("li").remove();
   }
-  setTimeout(() => createBar(), 1000);
+  setTimeout(() => createBar(), 600);
 }
 
 function getNumberOfCustomer() {
